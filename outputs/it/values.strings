@@ -1,1 +1,3 @@
-<string name="<string name="">&quot;&gt;</string>
+<string name="hello">Ciao</string>
+<string name="world">mondo</string>
+<string name="hello.world">Ciao mondo!</string>

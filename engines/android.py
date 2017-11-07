@@ -18,8 +18,8 @@ class EngineAndroid(EngineBase):
             for line in file.readlines():
                 result = re.match("(<string name=\")(.*)(\">)(.*)(<\/string>)", line.strip())
                 if result:
-                    key = result.group(1)
-                    value = result.group(3)
+                    key = result.group(2)
+                    value = result.group(4)
                     self.cached[key] = value
 
         return self.cached

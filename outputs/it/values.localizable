@@ -1,1 +1,3 @@
-"<string name="" = "&quot;&gt;";
+"hello" = "Ciao";
+"world" = "mondo";
+"hello.world" = "Ciao mondo!";

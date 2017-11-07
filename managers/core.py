@@ -1,3 +1,5 @@
+import json
+
 from engines.ios import EngineIOS
 from engines.android import EngineAndroid
 from managers.translator import TranslateManager
@@ -27,9 +29,9 @@ class CoreManager(object):
             for k,v in self.cached.items():
                 word = self.translate_manager.translate(v,lang)
                 specific_lang[k] = word
-            self.translated[k] = specific_lang
+            self.translated[lang] = specific_lang
             for engine in self.output_engines:
-                engine.write(lang,self.translated[k])
+                engine.write(lang,self.translated[lang])
 
 
     def engine_builder(self):
@@ -45,3 +47,7 @@ class CoreManager(object):
         if target == 'ios': return EngineIOS()
         elif target == 'android': return EngineAndroid()
         else: return None
+
+    def persist_cache(self):
+        with open('cached.json','w') as file:
+            json.dump(self.translated,file)
