@@ -9,3 +9,5 @@ env/
 #Others
 .DS_Store
 service_account.json
+
+outputs/
