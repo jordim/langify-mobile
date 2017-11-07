@@ -27,7 +27,7 @@ class CoreManager(object):
         for lang in self.langs:
             specific_lang = {}
             for k,v in self.cached.items():
-                word = self.translate_manager.translate(v,lang)
+                word = self.translate_manager.translate(k,v,lang)
                 specific_lang[k] = word
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
@@ -48,6 +48,5 @@ class CoreManager(object):
         elif target == 'android': return EngineAndroid()
         else: return None
 
-    def persist_cache(self):
-        with open('cached.json','w') as file:
-            json.dump(self.translated,file)
+    def finalize(self):
+        self.translate_manager.finalize()
