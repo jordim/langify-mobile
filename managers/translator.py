@@ -13,12 +13,10 @@ class TranslateManager(object):
     def translate(self,key,value,lang):
         cached_value = self.cache_manager.get(key,lang)
         if cached_value is None:
-            print(key,"in",lang,"was not cached")
             translation = self.client.translate(value,target_language=lang)
             value = translation['translatedText']
             self.cache_manager.save(key,value,lang)
         else:
-            print(key,"in",lang,"was cached")
             return cached_value
         return value
 
