@@ -10,6 +10,7 @@ from tabulate import tabulate
 class CoreManager(object):
 
     def __init__(self,params):
+        self.save_cache = params.get('save_cache',True)
         self.params = params
         self.data = {}
         self.translated = {}
@@ -43,6 +44,8 @@ class CoreManager(object):
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])
+        if self.save_cache:
+            self.finalize()
 
 
     def engine_builder(self):
