@@ -10,7 +10,7 @@ class CoreManager(object):
 
     def __init__(self,params):
         self.params = params
-        self.cached = {}
+        self.data = {}
         self.translated = {}
         self.input_engine = None
         self.output_engines = []
@@ -19,7 +19,7 @@ class CoreManager(object):
         self.engine_builder()
 
     def process(self):
-        self.cached = self.input_engine.parse()
+        self.data = self.input_engine.parse()
 
     def keys(self):
         temp = {}
@@ -30,13 +30,13 @@ class CoreManager(object):
         return temp
 
     def data(self):
-        return self.cached
+        return self.data
 
     def translate(self):
         self.process()
         for lang in self.langs:
             specific_lang = {}
-            for k,v in self.cached.items():
+            for k,v in self.data.items():
                 word = self.translate_manager.translate(k,v,lang)
                 specific_lang[k] = word
             self.translated[lang] = specific_lang
@@ -64,7 +64,8 @@ class CoreManager(object):
     def display(self):
         table = []
         lang_table = ['key']
-        for lang in self.langs: lang_table.append(lang)
+        for lang in self.langs:
+            lang_table.append(lang)
         table = [lang_table]
         for k in self.keys():
             translations = self.translate_manager.translations_for_key(k)
