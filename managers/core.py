@@ -37,8 +37,7 @@ class CoreManager(object):
         for lang in self.langs:
             specific_lang = {}
             for k,v in self.data.items():
-                word = self.translate_manager.translate(k,v,lang)
-                specific_lang[k] = word
+                specific_lang[k] = word = self.translate_manager.translate(k,v,lang)
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])

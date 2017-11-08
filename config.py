@@ -1,5 +1,5 @@
 params = {
     'input' : 'android',
-    'targets' : ['ios','android'],
-    'langs' : ['it','fr'],
+    'targets' : ['android'],
+    'langs' : ['es','fr','en'],
 }

@@ -18,6 +18,7 @@ class TranslateManager(object):
             self.cache_manager.save(key,value,lang)
         else:
             return cached_value
+        print(key," <--> ",lang," <---> ",value)
         return value
 
     def translations_for_key(self,key):

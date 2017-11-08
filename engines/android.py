@@ -29,7 +29,7 @@ class EngineAndroid(EngineBase):
         return self.cached
 
     def output(self):
-        return 'android.strings'
+        return 'android.xml'
 
     def input(self):
-        return 'android.strings'
+        return 'android.xml'
