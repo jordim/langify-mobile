@@ -1,6 +1,13 @@
 import json
 import os
 
+class CacheItem(object):
+
+    def __init__(self,key=None,value=None,lang=None):
+        self.key = key
+        self.value = value
+        self.lang = lang
+
 class CacheManager(object):
 
     def __init__(self):
@@ -8,14 +15,16 @@ class CacheManager(object):
         self.cache = {}
         self.load()
 
-    def get(self,key,lang):
+    def get(self,item):
+        lang = item.lang
+        key = item.key
         cache_lang = self.cache.get(lang,{})
         return cache_lang.get(key, None)
 
-    def save(self,key,value,lang):
-        cache_lang = self.cache.get(lang,{})
-        cache_lang[key] = value
-        self.cache[lang] = cache_lang
+    def save(self,item):
+        cache_lang = self.cache.get(item.lang,{})
+        cache_lang[item.key] = item.value
+        self.cache[item.lang] = cache_lang
 
     def persist(self):
         with open(self.file_name,'w') as file:

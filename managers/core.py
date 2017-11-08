@@ -3,6 +3,7 @@ import json
 from engines.ios import EngineIOS
 from engines.android import EngineAndroid
 from managers.translator import TranslateManager
+from managers.cache import CacheItem
 
 from tabulate import tabulate
 
@@ -37,7 +38,8 @@ class CoreManager(object):
         for lang in self.langs:
             specific_lang = {}
             for k,v in self.data.items():
-                specific_lang[k] = word = self.translate_manager.translate(k,v,lang)
+                item = CacheItem(k,v,lang)
+                specific_lang[k] = word = self.translate_manager.translate(item)
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])
@@ -67,7 +69,8 @@ class CoreManager(object):
             lang_table.append(lang)
         table = [lang_table]
         for k in self.keys():
-            translations = self.translate_manager.translations_for_key(k)
+            item = CacheItem(key=k)
+            translations = self.translate_manager.translations_for_key(item)
             translations.insert(0,k)
             table.append(translations)
         print(tabulate(table))

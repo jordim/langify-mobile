@@ -10,21 +10,22 @@ class TranslateManager(object):
         self.client = translate.Client()
         self.cache_manager = CacheManager()
 
-    def translate(self,key,value,lang):
-        cached_value = self.cache_manager.get(key,lang)
+    def translate(self,item):
+        cached_value = self.cache_manager.get(item)
         if cached_value is None:
-            translation = self.client.translate(value,target_language=lang)
-            value = translation['translatedText']
-            self.cache_manager.save(key,value,lang)
+            translation = self.client.translate(item.value,target_language=item.lang)
+            item.value = translation['translatedText']
+            self.cache_manager.save(item)
         else:
             return cached_value
-        print(key," <--> ",lang," <---> ",value)
-        return value
+        print(item.key," <--> ",item.lang," <---> ",item.value)
+        return item.value
 
-    def translations_for_key(self,key):
+    def translations_for_key(self,item):
         temp = []
         for lang in self.langs:
-            translation = self.cache_manager.get(key,lang)
+            item.lang = lang
+            translation = self.cache_manager.get(item)
             if translation:
                 temp.append(translation)
         return temp
