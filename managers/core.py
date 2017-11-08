@@ -11,6 +11,7 @@ class CoreManager(object):
 
     def __init__(self,params):
         self.save_cache = params.get('save_cache',True)
+        self.print_table = params.get('print_table',True)
         self.params = params
         self.data = {}
         self.translated = {}
@@ -46,6 +47,8 @@ class CoreManager(object):
                 engine.write(lang,self.translated[lang])
         if self.save_cache:
             self.finalize()
+        if self.print_table:
+            self.display()
 
 
     def engine_builder(self):
