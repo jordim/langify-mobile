@@ -11,3 +11,4 @@ env/
 service_account.json
 
 outputs/
+cached.json
