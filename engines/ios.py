@@ -6,16 +6,11 @@ from engines.base import EngineBase
 class EngineIOS(EngineBase):
 
     def __init__(self):
-        self.input_file = 'inputs/ios.strings'
-        self.output_folder = 'outputs'
-        self.output_file = 'values.localizable'
-        self.cached = {}
-
-    def format(self):
-        return "\"#key#\" = \"#value#\";"
+        super().__init__()
 
     def parse(self):
-        with open(self.input_file,'r') as file:
+        target = '{}/{}'.format(self.input_folder,self.input_file)
+        with open(target,'r') as file:
             for line in file.readlines():
                 result = re.match("\"(.*)\"(\s+=\s+)\"(.*)\"", line.strip())
                 if result:
@@ -25,18 +20,17 @@ class EngineIOS(EngineBase):
 
         return self.cached
 
-    def write(self,lang,data):
-        output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
-        output_folder = '{}/{}'.format(self.output_folder,lang)
-        if not os.path.exists(output_folder):
-            os.makedirs(output_folder)
-        with open(output_file,'w') as file:
-            for k,v in data.items():
-                line = self.format().replace("#key#",k).replace("#value#",v)
-                file.write(line)
-                file.write("\n")
-        file.close()
+    def format(self):
+        return "\"#key#\" = \"#value#\";"
 
+    def generate_line(self,k,v):
+        return self.format().replace("#key#",k).replace("#value#",v)
 
     def data(self):
         return self.cached
+
+    def output(self):
+        return 'ios.localizable'
+
+    def input(self):
+        return 'ios.strings'

@@ -5,16 +5,14 @@ from engines.base import EngineBase
 class EngineAndroid(EngineBase):
 
     def __init__(self):
-        self.input_file = 'inputs/android.strings'
-        self.output_folder = 'outputs'
-        self.output_file = 'values.strings'
-        self.cached = {}
+        super().__init__()
 
     def format(self):
         return "<string name=\"#key#\">#value#</string>"
 
     def parse(self):
-        with open(self.input_file,'r') as file:
+        target = '{}/{}'.format(self.input_folder,self.input_file)
+        with open(target,'r') as file:
             for line in file.readlines():
                 result = re.match("(<string name=\")(.*)(\">)(.*)(<\/string>)", line.strip())
                 if result:
@@ -24,18 +22,14 @@ class EngineAndroid(EngineBase):
 
         return self.cached
 
-    def write(self,lang,data):
-        output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
-        output_folder = '{}/{}'.format(self.output_folder,lang)
-        if not os.path.exists(output_folder):
-            os.makedirs(output_folder)
-        with open(output_file,'w') as file:
-            for k,v in data.items():
-                line = self.format().replace("#key#",k).replace("#value#",v)
-                file.write(line)
-                file.write("\n")
-        file.close()
-
+    def generate_line(self, k,v):
+        return self.format().replace("#key#",k).replace("#value#",v)
 
     def data(self):
         return self.cached
+
+    def output(self):
+        return 'android.strings'
+
+    def input(self):
+        return 'android.strings'
