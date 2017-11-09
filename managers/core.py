@@ -36,6 +36,8 @@ class CoreManager(object):
         return self.data
 
     def translate(self):
+        """Process and translate all files to specified languages and platforms"""
+
         self.process()
         for lang in self.langs:
             specific_lang = {}
@@ -52,6 +54,8 @@ class CoreManager(object):
 
 
     def engine_builder(self):
+        """Read configuration and initalize all needed engines"""
+        
         targets = self.params.get('targets',[])
         for target in targets:
             engine = self.select_engine(target)

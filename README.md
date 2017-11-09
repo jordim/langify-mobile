@@ -1,18 +1,31 @@
 # langify-mobile
 Python utility to translate values from iOS / Android resources
 
-**langify-mobile** is a simple utility class that read the one localizable file from one platform (currently iOS and Android) and all the corresponding files for each platform and translated using Google Treanslate API
+**langify-mobile** is a simple utility class that read the one localizable file from iOS or Android generates all translated files using Google Translate API for each platform and language you need.
 
-##Platforms available
+## Installation
+
+* Enable Google Translate API into your google developer account.
+* Save google_service.json int he same directory you will execute langify.py
+* Open a terminal and execute export GOOGLE_APPLICATION_CREDENTIALS='service_account.json'
+
+## Execution
+
+* Configure your requirements needs in config.py
+* Configure and run your *virtualenv*
+* call python langify.py
+
+### Platforms available
 - iOS
 - Android
 
-##Usage
+## Usage
 
-Put ios.localizable or android.xml localizable file in *input* folder. All files have to be in a valid format for each platform, on the contrary the process will fail.
+Put ios.localizable or android.xml localizable file in *input* folder. All files have to be in a valid format for each platform, on the contrary the process will fail. The following examples are valid format for Android and iOS respectively.
 
 ```<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Andorid valid line -->
     <string name="hello.world">Hello World!</string>
 </resources>
 ```
@@ -35,6 +48,11 @@ You can configure the languages you need to translate your files using **langs**
 
 Configure **targets** key to obtain your localizable files in the platforms you need.
 
-Usage **save_cache** as *True* to avoid unnecessary calls to Google Translate API. When the process ends it will persist all translations in a json. In future executions of the script if that keys exists in cache it will get the translation from it instead making a call to Google Translate API.
+Usage **save_cache** as *True* to avoid unnecessary calls to Google Translate API. When the process ends it will persist all translations in a json. In future executions of the script if that keys exists in cache it will get the translation from it instead of making a call to Google Translate API that has a fee.
 
-If key **print_table** is *True*, when the process ends the script will print all translated values in a table.
+If key **print_table** is *True*, when the process ends the script will print in console all translated values in a table
+
+
+## Create your own engines
+
+If you need to create some specific engine that fits your needs you can override EngineBase class and implement all necessary methods. Take a look to EngineIOS or EngineAndroid to see how an enigne looks like.

@@ -26,9 +26,6 @@ class EngineIOS(EngineBase):
     def generate_line(self,k,v):
         return self.format().replace("#key#",k).replace("#value#",v)
 
-    def data(self):
-        return self.cached
-
     def output(self):
         return 'ios.localizable'
 
