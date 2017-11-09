@@ -33,7 +33,7 @@ Put ios.localizable or android.xml localizable file in *input* folder. All files
 ```"hello.world" = "Hello world!";```
 
 
-If you open config.py file you will a python dictionary with some keys and values. Change the values according your requirements.
+If you open config.py file you will find a python dictionary with some keys and values. Change the values according your requirements.
 
 ```params = {
     'input' : 'android',
