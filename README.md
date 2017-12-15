@@ -18,6 +18,7 @@ Python utility to translate values from iOS / Android resources
 ### Platforms available
 - iOS
 - Android
+- Ionic (JSON)
 
 ## Usage
 
