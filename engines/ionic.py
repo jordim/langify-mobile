@@ -9,6 +9,12 @@ class EngineIonic(EngineBase):
         super().__init__()
         self.type = 'json'
 
+    def persist_file(self,file,data):
+        contents = {}
+        for k,v in data.items():
+            contents[k] = v
+            json.dump(contents, file)
+
     def format(self):
         return "<string name=\"#key#\">#value#</string>"
 

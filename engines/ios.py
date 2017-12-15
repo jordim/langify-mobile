@@ -8,6 +8,11 @@ class EngineIOS(EngineBase):
     def __init__(self):
         super().__init__()
 
+    def persist_file(self,file,data):
+        for k,v in data.items():
+            file.write(self.generate_line(k,v))
+            file.write("\n")
+
     def parse(self):
         target = '{}/{}'.format(self.input_folder,self.input_file)
         with open(target,'r') as file:

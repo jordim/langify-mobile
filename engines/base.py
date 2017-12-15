@@ -15,23 +15,21 @@ class EngineBase(ABC):
 
     def write(self,lang,data):
         """Write a translated file for a specific platform"""
-        print("write")
         output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
         output_folder = '{}/{}'.format(self.output_folder,lang)
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
         result_json = {}
         with open(output_file,'w') as file:
-            for k,v in data.items():
-                line = self.generate_line(k,v)
-                if self.type == 'text':
-                    file.write(line)
-                    file.write("\n")
-                elif self.type == 'json':
-                    result_json[k] = v
-            if self.type == 'json':
-                json.dump(result_json, file)
+            self.persist_file(file,data)
         file.close()
+        pass
+
+
+    @abstractmethod
+    def persist_file(self,file,data):
+        """Process all key values and persist to a file"""
+
         pass
 
     @abstractmethod

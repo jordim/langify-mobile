@@ -7,6 +7,11 @@ class EngineAndroid(EngineBase):
     def __init__(self):
         super().__init__()
 
+    def persist_file(self,file,data):
+        for k,v in data.items():
+            file.write(self.generate_line(k,v))
+            file.write("\n")
+
     def format(self):
         return "<string name=\"#key#\">#value#</string>"
 
