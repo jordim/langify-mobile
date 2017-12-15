@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 import os
+import json 
 
 class EngineBase(ABC):
     """Abstract class that represents an Engine to parse and write the transaltions for each platform"""
@@ -14,11 +15,12 @@ class EngineBase(ABC):
 
     def write(self,lang,data):
         """Write a translated file for a specific platform"""
-    
+        print("write")
         output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
         output_folder = '{}/{}'.format(self.output_folder,lang)
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
+        result_json = {}
         with open(output_file,'w') as file:
             for k,v in data.items():
                 line = self.generate_line(k,v)
@@ -26,8 +28,9 @@ class EngineBase(ABC):
                     file.write(line)
                     file.write("\n")
                 elif self.type == 'json':
-                    print(line)
-                    print("---")
+                    result_json[k] = v
+            if self.type == 'json':
+                json.dump(result_json, file)
         file.close()
         pass
 
