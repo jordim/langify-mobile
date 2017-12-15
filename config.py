@@ -1,7 +1,7 @@
 params = {
-    'input' : 'android',
+    'input' : 'ionic',
     'targets' : ['android'],
-    'langs' : ['es','fr','en'],
+    'langs' : ['fr'],
     'save_cache' : True,
     'print_table' : True
 }

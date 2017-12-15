@@ -2,6 +2,7 @@ import json
 
 from engines.ios import EngineIOS
 from engines.android import EngineAndroid
+from engines.ionic import EngineIonic
 from managers.translator import TranslateManager
 from managers.cache import CacheItem
 
@@ -67,6 +68,7 @@ class CoreManager(object):
     def select_engine(self,target):
         if target == 'ios': return EngineIOS()
         elif target == 'android': return EngineAndroid()
+        elif target == 'ionic': return EngineIonic()
         else: return None
 
     def finalize(self):

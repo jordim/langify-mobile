@@ -5,6 +5,7 @@ class EngineBase(ABC):
     """Abstract class that represents an Engine to parse and write the transaltions for each platform"""
 
     def __init__(self):
+        self.type = 'text'
         self.cached = {}
         self.output_file = self.output()
         self.input_file = self.input()
@@ -13,7 +14,7 @@ class EngineBase(ABC):
 
     def write(self,lang,data):
         """Write a translated file for a specific platform"""
-
+    
         output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
         output_folder = '{}/{}'.format(self.output_folder,lang)
         if not os.path.exists(output_folder):
@@ -21,8 +22,12 @@ class EngineBase(ABC):
         with open(output_file,'w') as file:
             for k,v in data.items():
                 line = self.generate_line(k,v)
-                file.write(line)
-                file.write("\n")
+                if self.type == 'text':
+                    file.write(line)
+                    file.write("\n")
+                elif self.type == 'json':
+                    print(line)
+                    print("---")
         file.close()
         pass
 
