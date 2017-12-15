@@ -44,7 +44,7 @@ class EngineBase(ABC):
         pass
 
     def data(self):
-        """Return a dictionary where key is the language and its value is a dictionary of key values with translated words""""
+        """Return a dictionary where key is the language and its value is a dictionary of key values with translated words"""
 
         return self.data
 

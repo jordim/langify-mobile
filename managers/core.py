@@ -55,7 +55,7 @@ class CoreManager(object):
 
     def engine_builder(self):
         """Read configuration and initalize all needed engines"""
-        
+
         targets = self.params.get('targets',[])
         for target in targets:
             engine = self.select_engine(target)
