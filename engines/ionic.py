@@ -16,7 +16,7 @@ class EngineIonic(EngineBase):
             json.dump(contents, file)
 
     def format(self):
-        return "<string name=\"#key#\">#value#</string>"
+        pass
 
     def parse(self):
         target = '{}/{}'.format(self.input_folder,self.input_file)
