@@ -6,6 +6,8 @@ class TranslateManager(object):
 
     def __init__(self,langs=[],params={}):
         self.params = params
+        print(self.params)
+        print(params)
         self.langs = langs
         self.client = translate.Client()
         self.cache_manager = CacheManager()
@@ -18,7 +20,7 @@ class TranslateManager(object):
             self.cache_manager.save(item)
         else:
             return cached_value
-        print(item.key," <--> ",item.lang," <---> ",item.value)
+
         return item.value
 
     def translations_for_key(self,item):
@@ -32,3 +34,6 @@ class TranslateManager(object):
 
     def finalize(self):
         self.cache_manager.persist()
+    
+    def log(self):
+        return self.params['debug']
