@@ -1,7 +1,7 @@
 # langify-mobile
-Python utility to translate values from iOS / Android resources
+Python utility to translate values from iOS / Android / Ionic translation resources
 
-**langify-mobile** is a simple utility class that read the one localizable file from iOS or Android generates all translated files using Google Translate API for each platform and language you need.
+**langify-mobile** is a simple utility class that read the one localizable file from yours iOS/ Android / Ionic project and generates all translated files using Google Translate API for each platform and language you need. The usage of Google Tanslate API has an affordable cost.
 
 ## Installation
 
@@ -22,7 +22,7 @@ Python utility to translate values from iOS / Android resources
 
 ## Usage
 
-Put ios.localizable or android.xml localizable file in *input* folder. All files have to be in a valid format for each platform, on the contrary the process will fail. The following examples are valid format for Android and iOS respectively.
+Put ios.localizable / android.xml or ionic.json localizable file in *input* folder. All files have to be in a valid format for each platform, on the contrary the process will fail. The following examples are valid format for Android and iOS respectively.
 
 ```<?xml version="1.0" encoding="utf-8"?>
 <resources>
@@ -41,7 +41,8 @@ If you open config.py file you will find a python dictionary with some keys and 
     'targets' : ['android'],
     'langs' : ['es','fr','en'],
     'save_cache' : True,
-    'print_table' : True
+    'print_table' : True,
+    'log' : True
 }
 ```
 
@@ -53,6 +54,7 @@ Usage **save_cache** as *True* to avoid unnecessary calls to Google Translate AP
 
 If key **print_table** is *True*, when the process ends the script will print in console all translated values in a table
 
+Use **log** key to log the process for each word.
 
 ## Create your own engines
 
