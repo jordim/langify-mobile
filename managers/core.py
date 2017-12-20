@@ -46,7 +46,7 @@ class CoreManager(object):
                 item = CacheItem(k,v,lang)
                 specific_lang[k] = word = self.translate_manager.translate(item)
                 if(self.log()):
-                    print(item.key," <--> ",item.lang," <---> ",item.value)
+                    print(item.key," <--> ",item.lang," <---> ",word.value)
             
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
