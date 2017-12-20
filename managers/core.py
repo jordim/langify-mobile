@@ -48,7 +48,6 @@ class CoreManager(object):
                 if(self.log()):
                     print(item.key," <---> ",item.lang," <---> ",item.value," <---> ",word)
             self.translated[lang] = specific_lang
-            print(specific_lang)
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])
         if self.save_cache:
