@@ -10,7 +10,7 @@ class EngineIonic(EngineBase):
         self.type = 'json'
 
     def persist_file(self,file,data):
-        json.dump(data, file)
+        json.dump(data, file).encode('utf8')
 
     def format(self):
         pass
