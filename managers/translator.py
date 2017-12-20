@@ -4,10 +4,7 @@ from managers.cache import CacheManager
 
 class TranslateManager(object):
 
-    def __init__(self,langs=[],params={}):
-        self.params = params
-        print(self.params)
-        print(params)
+    def __init__(self,langs=[]):
         self.langs = langs
         self.client = translate.Client()
         self.cache_manager = CacheManager()
@@ -34,6 +31,3 @@ class TranslateManager(object):
 
     def finalize(self):
         self.cache_manager.persist()
-    
-    def log(self):
-        return self.params['debug']

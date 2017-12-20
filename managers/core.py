@@ -45,9 +45,10 @@ class CoreManager(object):
             for k,v in self.data.items():
                 item = CacheItem(k,v,lang)
                 specific_lang[k] = word = self.translate_manager.translate(item)
+                if(self.log()):
+                    print(item.key," <--> ",item.lang," <---> ",item.value)
+            
             self.translated[lang] = specific_lang
-            if(self.log()):
-                print(item.key," <--> ",item.lang," <---> ",item.value)
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])
         if self.save_cache:
