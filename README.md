@@ -33,32 +33,9 @@ Put ios.localizable / android.xml or ionic.json localizable file in *input* fold
 
 ```"hello.world" = "Hello world!";```
 
-```params = {
-    'input' : 'android',
-    'targets' : ['android'],
-    'langs' : ['es','fr','en'],
-    'save_cache' : True,
-    'print_table' : True,
-    'log' : True
-}
-```
-
-```
 Langify runs as follows:
-```
-langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en
-``
 
-You can configure the languages you need to translate your files using **langs** key, it needs an array of strings of locales to know what are the languages to deal with.
+```langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en```
 
-Configure **--t** (targets) key to obtain your localizable files in the platforms you need.
 
-Usage **--c** as *True* to avoid unnecessary calls to Google Translate API. When the process ends it will persist all translations in a json. In future executions of the script if that keys exists in cache it will get the translation from it instead of making a call to Google Translate API that has a fee.
 
-If key **--p** is *True*, when the process ends the script will print in console all translated values in a table
-
-Use **--l** key to log the process for each word.
-
-## Create your own engines
-
-If you need to create some specific engine that fits your needs you can override EngineBase class and implement all necessary methods. Take a look to EngineIOS or EngineAndroid to see how an enigne looks like.
