@@ -4,7 +4,7 @@ import fire
 
 def translate(name="World",
           i=None,  #input engine ej: 'android'
-          o='',    #output engine ej: 'android,ios'
+          t='',    #output engine ej: 'android,ios'
           langs='',
           c=False, #cache
           p=True,  #print table results
@@ -12,7 +12,7 @@ def translate(name="World",
 
     params = {
         'input': i,
-        'targets': list(o),
+        'targets': list(t),
         'langs': list(langs),
         'save_cache': c,
         'print_table': p,

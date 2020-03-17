@@ -33,9 +33,6 @@ Put ios.localizable / android.xml or ionic.json localizable file in *input* fold
 
 ```"hello.world" = "Hello world!";```
 
-
-If you open config.py file you will find a python dictionary with some keys and values. Change the values according your requirements.
-
 ```params = {
     'input' : 'android',
     'targets' : ['android'],
@@ -46,15 +43,20 @@ If you open config.py file you will find a python dictionary with some keys and 
 }
 ```
 
+Langify runs as follows:
+```
+langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en
+``
+
 You can configure the languages you need to translate your files using **langs** key, it needs an array of strings of locales to know what are the languages to deal with.
 
-Configure **targets** key to obtain your localizable files in the platforms you need.
+Configure **--t** (targets) key to obtain your localizable files in the platforms you need.
 
-Usage **save_cache** as *True* to avoid unnecessary calls to Google Translate API. When the process ends it will persist all translations in a json. In future executions of the script if that keys exists in cache it will get the translation from it instead of making a call to Google Translate API that has a fee.
+Usage **--c** as *True* to avoid unnecessary calls to Google Translate API. When the process ends it will persist all translations in a json. In future executions of the script if that keys exists in cache it will get the translation from it instead of making a call to Google Translate API that has a fee.
 
-If key **print_table** is *True*, when the process ends the script will print in console all translated values in a table
+If key **--p** is *True*, when the process ends the script will print in console all translated values in a table
 
-Use **log** key to log the process for each word.
+Use **--l** key to log the process for each word.
 
 ## Create your own engines
 
