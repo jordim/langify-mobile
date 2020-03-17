@@ -39,7 +39,9 @@ Langify runs as follows:
 
 ## Arguments
 
-*--i* platforms on which you want to generate the locations. Possible values: android, ios, ionic
+*--i* platform from you want to translate the key values. Possibles values: ios, android, ionic
+
+*--t* platforms on which you want to generate the locations. Possible values: android, ios, ionic
 
 *--l* logs all the processes done by langify. Default is False
 
