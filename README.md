@@ -43,6 +43,7 @@ Put ios.localizable / android.xml or ionic.json localizable file in *input* fold
 }
 ```
 
+```
 Langify runs as follows:
 ```
 langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en
