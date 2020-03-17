@@ -1,9 +1,27 @@
-import os
-
 from managers.core import CoreManager
 
-import config
+import fire
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credentials.json'
-core_manager = CoreManager(config.params)
-core_manager.translate()
+def translate(name="World",
+          i=None,  #input engine ej: 'android'
+          o='',    #output engine ej: 'android,ios'
+          langs='',
+          c=False, #cache
+          p=True,  #print table results
+          l=False):
+
+    params = {
+        'input': i,
+        'targets': list(o),
+        'langs': list(langs),
+        'save_cache': c,
+        'print_table': p,
+        'log': l
+    }
+    core_manager = CoreManager(params)
+    core_manager.translate()
+    print(params)
+
+
+if __name__ == '__main__':
+    fire.Fire(translate)
