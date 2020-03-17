@@ -22,8 +22,11 @@ class CoreManager(object):
         self.translate_manager = TranslateManager(langs=self.langs)
         self.engine_builder()
 
-    def process(self):
-        self.data = self.input_engine.parse()
+    def process_content_from_file(self):
+        if self.input_engine:
+            self.data = self.input_engine.parse()
+        else:
+            print("Wrong input enigne")
 
     def keys(self):
         temp = {}
@@ -39,7 +42,7 @@ class CoreManager(object):
     def translate(self):
         """Process and translate all files to specified languages and platforms"""
 
-        self.process()
+        self.process_content_from_file()
         for lang in self.langs:
             specific_lang = {}
             for k,v in self.data.items():
@@ -62,7 +65,8 @@ class CoreManager(object):
         targets = self.params.get('targets',[])
         for target in targets:
             engine = self.select_engine(target)
-            self.output_engines.append(engine)
+            if engine:
+                self.output_engines.append(engine)
 
         input = self.params.get('input',None)
         self.input_engine = self.select_engine(input)

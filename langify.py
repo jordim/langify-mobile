@@ -4,6 +4,6 @@ from managers.core import CoreManager
 
 import config
 
-os.system("export GOOGLE_APPLICATION_CREDENTIALS='service_account.json'")
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credentials.json'
 core_manager = CoreManager(config.params)
 core_manager.translate()

@@ -8,7 +8,7 @@ env/
 
 #Others
 .DS_Store
-service_account.json
+credentials.json
 
 outputs/
 cached.json

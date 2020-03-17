@@ -1,8 +1,8 @@
 params = {
-    'input' : 'ionic',
-    'targets' : ['ionic'],
-    'langs' : ['ca','es','en'],
+    'input' : 'android',
+    'targets' : ['android'],
+    'langs' : ['en'],
     'save_cache' : True,
-    'print_table' : False,
-    'log': True
+    'print_table' : True,
+    'log': False
 }

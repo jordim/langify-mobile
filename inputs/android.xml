@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hola">Hola</string>
-    <string name="mundo">Mundo</string>
+    <string name="title">Conversor WEB a PDF</string>
 </resources>

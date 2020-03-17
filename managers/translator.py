@@ -1,4 +1,4 @@
-from google.cloud import translate
+from google.cloud import translate_v2 as translate
 
 from managers.cache import CacheManager
 
@@ -12,7 +12,11 @@ class TranslateManager(object):
     def translate(self,item):
         cached_value = self.cache_manager.get(item)
         if cached_value is None:
-            translation = self.client.translate(item.value,target_language=item.lang)
+            contents = [item.value]
+            translation = self.client.translate(
+                item.value,
+                target_language=item.lang
+            )
             item.value = translation['translatedText']
             self.cache_manager.save(item)
         else:
