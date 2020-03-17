@@ -35,7 +35,15 @@ Put ios.localizable / android.xml or ionic.json localizable file in *input* fold
 
 Langify runs as follows:
 
-```langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en```
+```langify.py --i=android --t=ios --langs=es,en```
 
+## Arguments
 
+*--i* platforms on which you want to generate the locations. Possible values: android, ios, ionic
+
+*--l* logs all the processes done by langify. Default is False
+
+*--langs* languages on which you want to translate to.
+
+*--c* caches all translated key names for avoid unnecesary calls to google cloud. Default is True
 
