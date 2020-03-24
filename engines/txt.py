@@ -17,9 +17,8 @@ class EngineTXT(EngineBase):
         pass
 
     def parse(self):
-        for file in glob.glob("input/*.txt"):
+        for file in glob.glob("inputs/*.txt"):
             target = '{}/{}'.format(self.input_folder,file)
-            print(os.path.abspath(target))
             with open(file,'r') as f:
                 self.cached[file] = f.read()
             f.close()

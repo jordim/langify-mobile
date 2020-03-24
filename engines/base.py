@@ -16,7 +16,6 @@ class EngineBase(ABC):
         self.input_folder = 'inputs'
 
     def write(self,lang,data):
-        print(os.path.abspath(self.output_folder))
         """Write a translated file for a specific platform"""
         output_file = '{}/{}/{}'.format(self.output_folder,lang,self.output_file)
         output_folder = '{}/{}'.format(self.output_folder,lang)
