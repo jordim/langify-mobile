@@ -21,6 +21,7 @@ class EngineBase(ABC):
         output_folder = '{}/{}'.format(self.output_folder,lang)
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
+        print(os.path.abspath(output_folder))
         with open(output_file,'w') as file:
             self.persist_file(file,data)
             logger.info("({}) => {}".format(lang,os.path.abspath(output_file)))
