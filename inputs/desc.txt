@@ -1,0 +1,22 @@
+Convierte cualquier pagina web a PDF en tu teléfono móvil Android, guarda de forma offline el PDF y puede ser compartido posteriormente via e-mail o whatsapp.
+
+Esta aplicación gratuita es ideal para gente que trabaja constantemente con contenido web y 
+necesita guardar la información para poder ser visualizada posteriormente.
+
+Importante: los PDF convertidos pueden ser visualizados offline y sin necesidad de estar contectado a Internet.
+
+El funcionamiento de la aplicación es muy simple:
+
+1 - Utiliza el navegador web incrustado en la APP.
+2 - Introduce la URL o accede a la página web destino navegando
+3 - Pulsa el botón de convertir HTML a PDF
+4 - Guarda el fichero 
+5 - Compártelo o visualiza el contenido en cualquier momento via e-mail, whatsapp.
+
+Formatos soportados actualmente:
+
+- HTML a PDF
+
+Esto es una aplicación nativa y va a ser actualizada constantemente.
+
+Estamos trabajando en añadir nuevos formatos como imagenes png, jpge o documentos excel o word.

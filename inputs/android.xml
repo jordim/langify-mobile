@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Web > PDF</string>
+    <string name="nav_header_title">Web a PDF</string>
+    <string name="nav_header_subtitle">Convierte cualquier Web a un documento PDF</string>
+
     <string name="title">Conversor WEB a PDF</string>
+    <string name="ok">OkF</string>
+    <string name="cancel">Cancelar</string>
+    <string name="pdf_generated_ok">PDF generado correctamente</string>
+    <string name="generating">Generando PDF...</string>
+    <string name="ask_open_pdf">"¿Quiere abrir el PDF? "</string>
+    <string name="error_exporting_pdf">Error al exportar la web a PDF</string>
+    <string name="open_file">Abrir fichero</string>
+    <string name="name_file">Nombre del fichero</string>
+    <string name="remember_name_file">Nombre para recordar el fichero</string>
 </resources>

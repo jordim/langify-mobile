@@ -1,10 +1,12 @@
 from abc import ABC, abstractmethod
 import os
 import json 
+import logging
+
+logger = logging.getLogger('langify')
 
 class EngineBase(ABC):
     """Abstract class that represents an Engine to parse and write the transaltions for each platform"""
-
     def __init__(self):
         self.type = 'text'
         self.cached = {}
@@ -19,9 +21,9 @@ class EngineBase(ABC):
         output_folder = '{}/{}'.format(self.output_folder,lang)
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
-        result_json = {}
         with open(output_file,'w') as file:
             self.persist_file(file,data)
+            logger.info("({}) => {}".format(lang,os.path.abspath(output_file)))
         file.close()
         pass
 

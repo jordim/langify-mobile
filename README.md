@@ -47,7 +47,7 @@ Put ios.localizable / android.xml or ionic.json localizable file in *input* fold
 Langify runs as follows:
 ```
 langify.py --i=android -p=True --t=android,ios,ionic --langs=es,en
-``
+```
 
 You can configure the languages you need to translate your files using **langs** key, it needs an array of strings of locales to know what are the languages to deal with.
 

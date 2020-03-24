@@ -3,14 +3,20 @@ import json
 from engines.ios import EngineIOS
 from engines.android import EngineAndroid
 from engines.ionic import EngineIonic
+from engines.txt import EngineTXT
 from managers.translator import TranslateManager
 from managers.cache import CacheItem
 
 from tabulate import tabulate
 
+import logging
+
+logger = logging.getLogger('langify')
+
 class CoreManager(object):
 
     def __init__(self,params):
+
         self.save_cache = params.get('save_cache',True)
         self.print_table = params.get('print_table',True)
         self.params = params
@@ -18,6 +24,8 @@ class CoreManager(object):
         self.translated = {}
         self.input_engine = None
         self.output_engines = []
+        self.input = params.get('input', None)
+        self.targets = params.get('targets',[])
         self.langs = params.get('langs',[])
         self.translate_manager = TranslateManager(langs=self.langs)
         self.engine_builder()
@@ -26,7 +34,7 @@ class CoreManager(object):
         if self.input_engine:
             self.data = self.input_engine.parse()
         else:
-            print("Wrong input enigne")
+            raise Exception("Wrong input engine")
 
     def keys(self):
         temp = {}
@@ -40,16 +48,12 @@ class CoreManager(object):
         return self.data
 
     def translate(self):
-        """Process and translate all files to specified languages and platforms"""
-
         self.process_content_from_file()
         for lang in self.langs:
             specific_lang = {}
             for k,v in self.data.items():
                 item = CacheItem(k,v,lang)
                 specific_lang[k] = word = self.translate_manager.translate(item)
-                if(self.log()):
-                    print(item.key," <---> ",item.lang," <---> ",item.value," <---> ",word)
             self.translated[lang] = specific_lang
             for engine in self.output_engines:
                 engine.write(lang,self.translated[lang])
@@ -62,12 +66,11 @@ class CoreManager(object):
     def engine_builder(self):
         """Read configuration and initalize all needed engines"""
 
-        targets = self.params.get('targets',[])
-        for target in targets:
+        for target in self.targets:
             engine = self.select_engine(target)
             if engine:
                 self.output_engines.append(engine)
-
+       
         input = self.params.get('input',None)
         self.input_engine = self.select_engine(input)
 
@@ -75,6 +78,7 @@ class CoreManager(object):
         if target == 'ios': return EngineIOS()
         elif target == 'android': return EngineAndroid()
         elif target == 'ionic': return EngineIonic()
+        elif target == 'txt': return EngineTXT()
         else: return None
 
     def finalize(self):
@@ -88,10 +92,8 @@ class CoreManager(object):
         table = [lang_table]
         for k in self.keys():
             item = CacheItem(key=k)
+            print(item)
             translations = self.translate_manager.translations_for_key(item)
             translations.insert(0,k)
+            print(translations)
             table.append(translations)
-        print(tabulate(table))
-
-    def log(self):
-        return self.params['log']
