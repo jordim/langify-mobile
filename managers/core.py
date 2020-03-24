@@ -92,8 +92,6 @@ class CoreManager(object):
         table = [lang_table]
         for k in self.keys():
             item = CacheItem(key=k)
-            print(item)
             translations = self.translate_manager.translations_for_key(item)
             translations.insert(0,k)
-            print(translations)
             table.append(translations)
